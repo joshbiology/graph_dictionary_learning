@@ -19,7 +19,7 @@ The source code for those papers was obtained from these websites:
  
 To install, first follow the readme instructions inside ompbox1, ompbox10, and ksvdbox13. Certain of their elements must be compiled locally. Then, ensure that those paths are exposed to your MATLAB environment using 'addpath'. 
 
-The helper scripts, DGRDL_wrapper and OMP_wrapper, are simple wrappers that I wrote in order to facilitate development and scripting for the Webster paper. I incorporated the graph-laplacian calculating script from GSC, so that given an input data matrix, those calculations are performed automatically and passed on to DGRDL. I also added a k-medioids step in dictionary initialization, such that any DGRDL run begins with an representative and stable set of k elements as the initial dictionary (rather than randomized columns, which is the default). Finally, these wrappers obey the convention established in the k-SVD, OMP, DGRDL and GSC implementations which is that for your input data matrix:
+The helper scripts, DGRDL_wrapper and OMP_wrapper, are simple wrappers that I wrote in order to facilitate development and scripting for the Webster paper. I incorporated the graph-laplacian calculating script from GSC, so that given an input data matrix, those calculations are performed automatically and passed on to DGRDL. I also added a k-medioids step in dictionary initialization, such that any DGRDL run begins with an representative and stable set of k elements as the initial dictionary (rather than randomized columns, which was the default in the original implementation). Finally, these wrappers obey the data conventions established in the k-SVD, OMP, DGRDL and GSC implementations. For your input data matrix:
 
 1. Features are rows
 2. Signals are columns.
