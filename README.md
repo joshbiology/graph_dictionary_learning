@@ -27,3 +27,6 @@ The helper scripts, DGRDL_wrapper and OMP_wrapper, are simple wrappers that I wr
 For image analysis, this means that your data matrix must be in the form pixels x images. For Webster, your data matrix must be in the form cells x genes.
 
 Finally, each of these methods expects a data matrix as input, so make sure when you import your matrix into Matlab, that it has the right format and that column and row names are stored appropriately. For DGRDL_wrapper, I found it easiest to pass along the path to a *completely numerical* matrix without rownames and column names. This worked for me since I was using R to export flat files, read back the outputs, and put the row and column names back in through my R session. Your mileage may vary.
+
+# Note on MATLAB licenses
+MATLAB requires a license to run, so contact your institutional IT department if you need help obtaining a license for running these scripts. For those without access, there is a free trial (https://www.mathworks.com/campaigns/products/trials.html). We are also working on a Docker Image that contains a compiled version of DGRDL_wrapper and OMP_wrapper, for those who wish to run those scripts specifically. 
