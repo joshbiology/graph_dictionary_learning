@@ -15,11 +15,17 @@ The source code for those papers was obtained from these websites:
 2. GSC: http://www.cad.zju.edu.cn/home/dengcai/Data/SparseCoding.html
 3. K-SVD/OMP: http://www.cs.technion.ac.il/~ronrubin/software.html
 
-# Overview
+# Environment setup
  
-To install, first follow the readme instructions inside ompbox1, ompbox10, and ksvdbox13. Certain of their elements must be compiled locally. Then, ensure that those paths are exposed to your MATLAB environment using 'addpath'. 
+To install, first follow the readme instructions inside ompbox1, ompbox10, and ksvdbox13. Certain of their elements must be compiled locally. This is done by entering, for example, /ksvdbox13/private and running "matlab make". See the readme inside each folder for details.
 
-The helper scripts, DGRDL_wrapper and OMP_wrapper, are simple wrappers that I wrote in order to facilitate development and scripting for the Webster paper. I incorporated the graph-laplacian calculating script from GSC, so that given an input data matrix, those calculations are performed automatically and passed on to DGRDL. I also added a k-medioids step in dictionary initialization, such that any DGRDL run begins with an representative and stable set of k elements as the initial dictionary (rather than randomized columns, which was the default in the original implementation). Finally, these wrappers obey the data conventions established in the k-SVD, OMP, DGRDL and GSC implementations. For your input data matrix:
+Then, ensure that those paths are exposed to your MATLAB environment using 'addpath'. This incldues the GraphSC and DGRDL_Package folder as well.
+
+Finally, we've found that sometimes, functions in DGRDL_Package still can't see functions that it needs in ksvdbox13, namely the sprow function. One workaround is, post-compilation, copy ksvdbox13/private/sprow.* to DGRDL_Package/. 
+
+# Helper scripts
+
+The helper scripts, DGRDL_wrapper and OMP_wrapper, are simple wrappers that I wrote in order to facilitate development and scripting for the Webster paper. I incorporated the graph-laplacian calculating script from GraphSC, so that given an input data matrix, those calculations are performed automatically and passed on to DGRDL. I also added a k-medioids step in dictionary initialization, such that any DGRDL run begins with an representative and stable set of k elements as the initial dictionary (rather than randomized columns, which was the default in the original implementation). Finally, these wrappers obey the data conventions established in the k-SVD, OMP, DGRDL and GSC implementations. For your input data matrix:
 
 1. Features are rows
 2. Signals are columns.
@@ -27,6 +33,8 @@ The helper scripts, DGRDL_wrapper and OMP_wrapper, are simple wrappers that I wr
 For image analysis, this means that your data matrix must be in the form pixels x images. For Webster, your data matrix must be in the form cells x genes.
 
 Finally, each of these methods expects a data matrix as input, so make sure when you import your matrix into Matlab, that it has the right format and that column and row names are stored appropriately. For DGRDL_wrapper, I found it easiest to pass along the path to a *completely numerical* matrix without rownames and column names. This worked for me since I was using R to export flat files, read back the outputs, and put the row and column names back in through my R session. Your mileage may vary.
+
+The output of both functions is a .mat object that contains all the inputs and outputs of the runs.
 
 # Note on MATLAB licenses
 MATLAB requires a license to run, so contact your institutional IT department if you need help obtaining a license for running these scripts. For those without access, there is a free trial (https://www.mathworks.com/campaigns/products/trials.html). We are also working on a Docker Image that contains a compiled version of DGRDL_wrapper and OMP_wrapper, for those who wish to run those scripts specifically. 
